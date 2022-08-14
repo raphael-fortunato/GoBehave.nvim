@@ -1,14 +1,17 @@
+import os
+import sys
+
 from behave import runner_util
 from behave.step_registry import registry
-import sys
-import os
+
 
 def get_step_definition(feature, input):
     parsed_input = " ".join(input.lstrip().split(" ")[1:]).lstrip()
     base_path = os.path.dirname(os.path.abspath(feature))
-    steps_paths = [os.path.join(base_path,"steps")]
+    os.chdir(base_path)
+    steps_paths = [os.path.join(base_path, "steps")]
 
-    runner_util.exec_file(os.path.join(base_path,"environment.py"))
+    runner_util.exec_file(os.path.join(base_path, "environment.py"))
     runner_util.load_step_modules(steps_paths)
 
     for step_type in registry.steps.keys():
@@ -22,6 +25,5 @@ def get_step_definition(feature, input):
                 line = step.location.line
                 print(f"edit +{line} {file}")
                 exit(0)
-                return
     print("echo 'Not found'")
     exit(1)

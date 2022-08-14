@@ -1,7 +1,7 @@
 from behave import given, step, then, when
 
 
-@given('I am using "{prg}"')
+@given("I am using {prg}")
 def using_emacs(context, prg):
     pass
 
@@ -16,6 +16,6 @@ def switch_to_vim(context, prg):
     pass
 
 
-@then('I will be happy')
+@then("I will be happy")
 def be_happy(context):
     pass
