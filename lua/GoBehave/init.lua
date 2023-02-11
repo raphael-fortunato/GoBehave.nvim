@@ -60,6 +60,7 @@ M.goto_definition = function()
 			.. "python -"
 		local definition_file = M.send_command(command)
 		if definition_file:find("edit") then
+			print("This was the result: " .. definition_file)
 			vim.api.nvim_command(definition_file)
 		else
 			print("This was the result: " .. definition_file)
